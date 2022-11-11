@@ -1,0 +1,33 @@
+{
+  "name": "chit-chat-msg",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harusamer/chit-chat-msg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harusamer/chit-chat-msg/issues"
+  },
+  "homepage": "https://github.com/harusamer/chit-chat-msg#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http-proxy": "^1.18.1",
+    "moment": "^2.29.4",
+    "pm2": "^5.2.2",
+    "socket.io": "^4.5.3",
+    "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
