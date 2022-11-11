@@ -52,7 +52,7 @@ io.on('connection', socket => {
   });
   // Listen for client message
   socket.on('chatMessage', msg => {
-    const user = getActiveUser(socket.id);
+    const user = getActiveUser(socket.id); if (!user.room) { console.log("No Romm! 1"); return; }
     /*
     console.log('chatMessage', user)
     fs.appendFile('../hackathon-season2/msgs/text02', msg + "\n", err => {
@@ -69,8 +69,9 @@ io.on('connection', socket => {
     io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
   socket.on('chatImage', msg => {
+    const user = getActiveUser(socket.id); if (!user.room) { console.log("No Romm! 2"); return; }
     console.log(`chatImage ${count}`);
-    fs.writeFile(`../hackathon-season2/imgs/img${count++}.png`, msg, 'base64', err => {
+    fs.writeFile(`../hackathon-season2/imgs/img${count++}.png`, msg.replace("data:image/png;base64,", ""), 'base64', err => {
       if (err) {
         console.error(err);
       }
