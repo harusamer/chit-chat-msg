@@ -15,7 +15,7 @@ const {
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, { cors: {
-    origin: 'http://192.168.0.163:5173',
+    origin: 'http://172.20.10.10:5173',
     methods: ['GET', 'POST']
 }});
 
@@ -99,4 +99,31 @@ io.on('connection', socket => {
 
 const PORT = process.env.PORT || 3000;
 
+const mem = { "users": [], "rooms": [{"name":"dummy-room","users":[] }]}
+
+app.get('/create-user', (req, res) => {
+  console.log(req.query.name);
+  mem["users"].push(req.query.name) 
+  res.send(req.query.name)
+})
+
+app.get('/create-room', (req, res) => {
+  console.log(req.params)
+  mem["rooms"].push({
+    "name": req.query.name,
+    "users": [req.query.user]
+  }) 
+  res.send(mem);
+})
+
+app.get('/user-list', (req, res) => {
+  console.log(req.params)
+  res.send(mem);
+})
+
+// app.listen(3001, () => {
+//   console.log(`Example app listening on port ${PORT}`)
+// })
+
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
